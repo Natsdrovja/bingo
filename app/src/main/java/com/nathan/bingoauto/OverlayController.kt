@@ -65,7 +65,14 @@ class OverlayController(
         view.findViewById<Button>(R.id.btn_close).setOnClickListener { onClose() }
 
         enableDrag(view)
-        windowManager.addView(view, layoutParams)
+        try {
+            windowManager.addView(view, layoutParams)
+        } catch (e: Exception) {
+            // Typically WindowManager.BadTokenException when the "draw over other
+            // apps" permission is missing or was revoked.
+            android.util.Log.e("OverlayController", "addView failed", e)
+            root = null
+        }
     }
 
     private fun enableDrag(view: View) {

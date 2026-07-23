@@ -53,6 +53,13 @@
             android:paddingTop="20dp" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:paddingBottom="4dp"
+            android:text="APK hors Play Store : si « Bingo Auto » est grisé (« contrôlé par les paramètres restreints »), va dans Applications → Bingo Auto → menu ⋮ → « Autoriser les paramètres restreints », puis reviens ici." />
+
+        <TextView
             android:id="@+id/txt_accessibility_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -60,7 +60,10 @@ class MainActivity : AppCompatActivity() {
         val accessibilityOk = isAccessibilityEnabled()
         binding.txtOverlayStatus.text = status("Superposition", overlayOk)
         binding.txtAccessibilityStatus.text = status("Accessibilité", accessibilityOk)
-        binding.btnStart.isEnabled = overlayOk && accessibilityOk
+        // The overlay pastille only needs the "draw over other apps" permission.
+        // Accessibility is required to actually tap, but we let the user start
+        // without it (the overlay shows a warning) so the pastille can be tested.
+        binding.btnStart.isEnabled = overlayOk
     }
 
     private fun status(label: String, ok: Boolean) =
@@ -79,14 +82,25 @@ class MainActivity : AppCompatActivity() {
     private fun openAccessibilitySettings() {
         startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         Toast.makeText(
-            this, "Active « Bingo Auto » dans la liste", Toast.LENGTH_LONG
+            this,
+            "Si « Bingo Auto » est grisé (paramètres restreints) : Applis → Bingo Auto → ⋮ → Autoriser les paramètres restreints",
+            Toast.LENGTH_LONG
         ).show()
     }
 
     private fun startBot() {
-        if (!Settings.canDrawOverlays(this) || !isAccessibilityEnabled()) {
-            Toast.makeText(this, "Active d'abord les 2 permissions", Toast.LENGTH_SHORT).show()
+        if (!Settings.canDrawOverlays(this)) {
+            Toast.makeText(
+                this, "Active d'abord la superposition", Toast.LENGTH_SHORT
+            ).show()
             return
+        }
+        if (!isAccessibilityEnabled()) {
+            Toast.makeText(
+                this,
+                "Accessibilité coupée : la pastille s'affichera mais aucun tap ne sera fait",
+                Toast.LENGTH_LONG
+            ).show()
         }
         val manager =
             getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
