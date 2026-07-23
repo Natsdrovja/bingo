@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Bingo Auto</string>
+    <string name="accessibility_label">Bingo Auto</string>
+    <string name="accessibility_description">Permet à Bingo Auto de taper automatiquement les cases correspondantes dans ton jeu de bingo.</string>
+</resources>

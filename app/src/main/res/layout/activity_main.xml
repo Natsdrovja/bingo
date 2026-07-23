@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tape automatiquement les cases correspondantes dans ton jeu de bingo."
+            android:textSize="14sp"
+            android:paddingBottom="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Autorise la superposition"
+            android:textStyle="bold"
+            android:paddingTop="8dp" />
+
+        <TextView
+            android:id="@+id/txt_overlay_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Superposition : ✗ à activer"
+            android:paddingBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ouvrir les réglages de superposition" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Active le service d'accessibilité"
+            android:textStyle="bold"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/txt_accessibility_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Accessibilité : ✗ à activer"
+            android:paddingBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_accessibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ouvrir les réglages d'accessibilité" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Démarre puis ouvre ton jeu"
+            android:textStyle="bold"
+            android:paddingTop="20dp" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Démarrer le bot" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Arrêter le bot" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:textSize="13sp"
+            android:text="Une fois démarré, une pastille flottante ▶ apparaît par-dessus le jeu. Appuie dessus pour lancer/mettre en pause. Appui long = nouvelle partie (réinitialise les numéros)." />
+
+    </LinearLayout>
+</ScrollView>

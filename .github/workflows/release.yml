@@ -26,33 +26,27 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Install SDK packages
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
-      - name: Code generation
-        run: dart run build_runner build
-
-      - name: Analyze project
-        run: flutter analyze
-
-      - name: Run tests
-        run: flutter test
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Build Debug APK
-        run: flutter build apk --debug
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Locate APK
         id: apk
         run: |
-          APK="build/app/outputs/flutter-apk/app-debug.apk"
+          APK="app/build/outputs/apk/debug/app-debug.apk"
           if [ ! -f "$APK" ]; then
             echo "APK introuvable." >&2
+            find app/build/outputs -name "*.apk" || true
             exit 1
           fi
           echo "path=$APK" >> "$GITHUB_OUTPUT"
